@@ -3,7 +3,6 @@ import axios from "axios";
 const url = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
 const options = {
 	method: 'GET',
-	url: 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary',
 	params: {
 	  bl_latitude: '11.847676',
 	  tr_latitude: '12.838442',

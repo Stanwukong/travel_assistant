@@ -18,27 +18,30 @@ const places = [
 ]
 
 function Home() {
-  const [coordinates, setCoordinates] = useState({});
+  const [coordinates, setCoordinates] = useState({})
 
-  const [type, setType] = useState("restaurants");
+  const [bounds, setBounds] = useState(null)
 
-  const [ratings, setRatings] = useState("");
+  const [type, setType] = useState("restaurants")
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [ratings, setRatings] = useState("")
+
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     // get the users current location on initial load
 
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
-        console.log({ latitude, longitude });
-        setCoordinates({ lat: latitude, lng: longitude });
+        setCoordinates({ lat: latitude, lng: longitude })
       }
-    );
+    )
   }, [])
 
   useEffect(() => {
-    getPlacesData().then((data) => )
+    getPlacesData().then((data) => {
+      console.log(data)
+    })
   }, [])
 
   return (
@@ -56,7 +59,11 @@ function Home() {
         setCoordinates={setCoordinates}
       />
       <List places={places} isLoading={isLoading} />
-      <Map />
+      <Map
+        setCoordinates={setCoordinates}
+        coordinates={coordinates}
+        setBounds={setBounds}
+      />
     </Flex>
   )
 }
