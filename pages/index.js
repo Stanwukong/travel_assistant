@@ -1,9 +1,10 @@
 import { Flex } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Header from "../components/Header"
 import List from "../components/List"
 import Map from "../components/Map"
 import PlaceDetails from "../components/PlaceDetails"
+import { getPlacesData } from "./api"
 
 const places = [
   { name: "Sample Place1" },
@@ -17,13 +18,28 @@ const places = [
 ]
 
 function Home() {
-  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 })
+  const [coordinates, setCoordinates] = useState({});
 
-  const [type, setType] = useState("restaurants")
+  const [type, setType] = useState("restaurants");
 
-  const [ratings, setRatings] = useState("")
+  const [ratings, setRatings] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // get the users current location on initial load
+
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        console.log({ latitude, longitude });
+        setCoordinates({ lat: latitude, lng: longitude });
+      }
+    );
+  }, [])
+
+  useEffect(() => {
+    getPlacesData().then((data) => )
+  }, [])
 
   return (
     <Flex
