@@ -21,8 +21,8 @@ function Map({ coordinates, setCoordinates, setBounds}) {
       margin={[50, 50, 50, 50]}
       options={""}
       onBoundsChanged={(e) => {
-      
-      }}  
+        console.log(e);
+      }}
     ></GoogleMap>
   )
 }
