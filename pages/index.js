@@ -6,18 +6,12 @@ import Map from "../components/Map"
 import PlaceDetails from "../components/PlaceDetails"
 import { getPlacesData } from "./api"
 
-const places = [
-  { name: "Sample Place1" },
-  { name: "Sample Place2" },
-  { name: "Sample Place3" },
-  { name: "Sample Place4" },
-  { name: "Sample Place5" },
-  { name: "Sample Place6" },
-  { name: "Sample Place7" },
-  { name: "Sample Place8" },
-]
+
 
 function Home() {
+
+  const [places, setPlaces] = useState([]);
+
   const [coordinates, setCoordinates] = useState({})
 
   const [bounds, setBounds] = useState(null)
@@ -33,16 +27,21 @@ function Home() {
 
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
+        console.log({ latitude, longitude });
         setCoordinates({ lat: latitude, lng: longitude })
       }
     )
   }, [])
 
   useEffect(() => {
-    getPlacesData().then((data) => {
+    setIsLoading(true);
+    getPlacesData(bounds?.sw, bounds?.ne).then((data) => {
       console.log(data)
+      setPlaces(data)
+      setIsLoading(false)
+
     })
-  }, [])
+  }, [coordinates, bounds])
 
   return (
     <Flex
