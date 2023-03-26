@@ -5,6 +5,7 @@ import List from "../components/List"
 import Map from "../components/Map"
 import PlaceDetails from "../components/PlaceDetails"
 import { getPlacesData } from "./api"
+import Head from "next/head"
 
 
 
@@ -60,6 +61,13 @@ function Home() {
       maxHeight={"100vh"}
       position={"relative"}
     >
+
+      <Head>
+      <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLOF7XBFqFxjA1NUbERUj4xxTgs14kqiM&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+      </Head>
       <Header
         setType={setType}
         setRatings={setRatings}

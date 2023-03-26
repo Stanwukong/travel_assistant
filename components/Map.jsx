@@ -18,18 +18,11 @@ function Map({ coordinates, setCoordinates, setBounds, places }) {
   const [isCard, setIsCard] = useState(false);
   const [cardData, setCardData] = useState(null);
 
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-  })
-
-  if (!isLoaded) {
-    return <div>Loading...</div>
-  }
 
   return (
     <Box width={"full"} height={"full"}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: isLoaded }}
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
         defaultZoom={10}
         center={coordinates}
         defaultCenter={coordinates}

@@ -12,10 +12,22 @@ import {
 } from "@chakra-ui/react"
 import { Rating, ThemeProvider, Typography } from "@mui/material"
 import { Autocomplete } from "@react-google-maps/api"
-import React from "react"
+import React, { useState } from "react"
 import { BiChevronDown, BiHotel, BiMapAlt, BiRestaurant, BiSearch, BiStar } from "react-icons/bi"
 
 const Header = ({ setType, setRatings, setCoordinates }) => {
+
+  const [autoComplete, setAutoComplete] = useState(null);
+
+  function onLoad(autoC) {
+    setAutoComplete(autoC);
+  } 
+
+  const onPlaceChanged = () => {
+    const lat = autoComplete.getPlace().geometry.location.lat;
+    const lng = autoComplete.getPlace().geometry.location.lng;
+    setCoordinates({ lat, lng });
+  }
   return (
     <Flex
       position={"absolute"}
@@ -27,7 +39,7 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
       zIndex={101}
     >
       <Flex>
-        {/* <Autocomplete> */}
+        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
         <InputGroup width={"35vw"} shadow="sm">
           <InputRightElement
             pointerEvents={"none"}
@@ -45,7 +57,7 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
             _placeholder={{ color: "gray.700" }}
           />
         </InputGroup>
-        {/* </Autocomplete> */}
+        </Autocomplete>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Flex
             align={"center"}
