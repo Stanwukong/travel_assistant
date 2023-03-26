@@ -77,6 +77,7 @@ function PlaceDetails({ place }) {
           }
         </Flex>
         <Image
+           alt=""
           objectFit={"cover"}
           width={120}
           height={120}

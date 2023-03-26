@@ -8,7 +8,7 @@ import {
 } from "@react-google-maps/api"
 import GoogleMapReact from "google-map-react"
 import styles from "./Map.module.css"
-import { Box, Image } from "@chakra-ui/react"
+import { Box, Image, Text } from "@chakra-ui/react"
 import { IoLocation } from "react-icons/io5"
 import { BiX } from "react-icons/bi"
 
@@ -40,7 +40,7 @@ function Map({ coordinates, setCoordinates, setBounds, places }) {
         }}
       >
         {places?.map((place, index) => (
-          <Box lat={Number(place.latitude)} lng={Number(place.longitude)} position={'relative'} cursor="pointer">
+          <Box lat={Number(place.latitude)} lng={Number(place.longitude)} position={'relative'} cursor="pointer" key={index}>
             <IoLocation color="red" fontSize={30}/>
           </Box>
         ))}
@@ -57,6 +57,7 @@ function Map({ coordinates, setCoordinates, setBounds, places }) {
             rounded={'lg'}
           >
             <Image
+          alt=""
           objectFit={"cover"}
           width={120}
           height={120}

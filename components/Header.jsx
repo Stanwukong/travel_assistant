@@ -13,20 +13,26 @@ import {
 import { Rating, ThemeProvider, Typography } from "@mui/material"
 import { Autocomplete } from "@react-google-maps/api"
 import React, { useState } from "react"
-import { BiChevronDown, BiHotel, BiMapAlt, BiRestaurant, BiSearch, BiStar } from "react-icons/bi"
+import {
+  BiChevronDown,
+  BiHotel,
+  BiMapAlt,
+  BiRestaurant,
+  BiSearch,
+  BiStar,
+} from "react-icons/bi"
 
 const Header = ({ setType, setRatings, setCoordinates }) => {
-
-  const [autoComplete, setAutoComplete] = useState(null);
+  const [autoComplete, setAutoComplete] = useState(null)
 
   function onLoad(autoC) {
-    setAutoComplete(autoC);
-  } 
+    setAutoComplete(autoC)
+  }
 
   const onPlaceChanged = () => {
-    const lat = autoComplete.getPlace().geometry.location.lat;
-    const lng = autoComplete.getPlace().geometry.location.lng;
-    setCoordinates({ lat, lng });
+    const lat = autoComplete.getPlace().geometry.location.lat
+    const lng = autoComplete.getPlace().geometry.location.lng
+    setCoordinates({ lat, lng })
   }
   return (
     <Flex
@@ -40,23 +46,22 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
     >
       <Flex>
         <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-        <InputGroup width={"35vw"} shadow="sm">
-          <InputRightElement
-            pointerEvents={"none"}
-            children={<BiSearch color="gray" fontSize={20} />}
-          />
-          <Input
-            type={"text"}
-            placeholder="Search Google Map..."
-            variant={"filled"}
-            fontSize={"18px"}
-            bg={"white"}
-            color={"gray.700"}
-            _hover={{ bg: "whiteAlpha.800" }}
-            _focus={{ bg: "whiteAlpha.800" }}
-            _placeholder={{ color: "gray.700" }}
-          />
-        </InputGroup>
+          <InputGroup width={"35vw"} shadow="sm">
+            <InputRightElement pointerEvents={"none"}>
+              <BiSearch color="gray" fontSize={20} />
+            </InputRightElement>
+            <Input
+              type={"text"}
+              placeholder="Search Google Map..."
+              variant={"filled"}
+              fontSize={"18px"}
+              bg={"white"}
+              color={"gray.700"}
+              _hover={{ bg: "whiteAlpha.800" }}
+              _focus={{ bg: "whiteAlpha.800" }}
+              _placeholder={{ color: "gray.700" }}
+            />
+          </InputGroup>
         </Autocomplete>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Flex
@@ -69,9 +74,9 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
             ml={4}
             shadow="lg"
             cursor={"pointer"}
-            _hover={{ bg: 'gray.200'}}
-            transition={'ease-in-out'}
-            transitionDuration={'0.3s'}
+            _hover={{ bg: "gray.200" }}
+            transition={"ease-in-out"}
+            transitionDuration={"0.3s"}
           >
             <Menu>
               <BiStar fontSize={25} />
@@ -149,12 +154,12 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
             ml={4}
             shadow="lg"
             cursor={"pointer"}
-            _hover={{ bg: 'gray.200'}}
-            transition={'ease-in-out'}
-            transitionDuration={'0.3s'}
-            onClick={() => setType('restaurants')}
+            _hover={{ bg: "gray.200" }}
+            transition={"ease-in-out"}
+            transitionDuration={"0.3s"}
+            onClick={() => setType("restaurants")}
           >
-            <BiRestaurant size={25}/>
+            <BiRestaurant size={25} />
             <Text ml={3} fontSize={16} fontWeight={500}>
               Restaurants
             </Text>
@@ -171,12 +176,12 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
             ml={4}
             shadow="lg"
             cursor={"pointer"}
-            _hover={{ bg: 'gray.200'}}
-            transition={'ease-in-out'}
-            transitionDuration={'0.3s'}
-            onClick={() => setType('hotels')}
+            _hover={{ bg: "gray.200" }}
+            transition={"ease-in-out"}
+            transitionDuration={"0.3s"}
+            onClick={() => setType("hotels")}
           >
-            <BiHotel size={25}/>
+            <BiHotel size={25} />
             <Text ml={3} fontSize={16} fontWeight={500}>
               Hotels
             </Text>
@@ -193,12 +198,12 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
             ml={4}
             shadow="lg"
             cursor={"pointer"}
-            _hover={{ bg: 'gray.200'}}
-            transition={'ease-in-out'}
-            transitionDuration={'0.3s'}
-            onClick={() => setType('attractions')}
+            _hover={{ bg: "gray.200" }}
+            transition={"ease-in-out"}
+            transitionDuration={"0.3s"}
+            onClick={() => setType("attractions")}
           >
-            <BiMapAlt size={25}/>
+            <BiMapAlt size={25} />
             <Text ml={3} fontSize={16} fontWeight={500}>
               Attractions
             </Text>
