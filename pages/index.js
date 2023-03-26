@@ -37,7 +37,7 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    const filteredData = places.filter((place) => place.rating > ratings);
+    const filteredData = places?.filter((place) => place.rating > ratings);
     setFilteredPlaces(filteredData)
 
   }, [ratings, places]);
@@ -73,12 +73,12 @@ function Home() {
         setRatings={setRatings}
         setCoordinates={setCoordinates}
       />
-      <List places={filteredPlaces.length ? filteredPlaces : places} isLoading={isLoading} />
+      <List places={filteredPlaces?.length ? filteredPlaces : places} isLoading={isLoading} />
       <Map
         setCoordinates={setCoordinates}
         coordinates={coordinates}
         setBounds={setBounds}
-        places={filteredPlaces.length ? filteredPlaces : places}
+        places={filteredPlaces?.length ? filteredPlaces : places}
       />
     </Flex>
   )
