@@ -8,7 +8,7 @@ function List({ places, isLoading }) {
       <Flex
         direction={"column"}
         bgColor={"whiteAlpha.900"}
-        width={"37vw"}
+        width={"20vw"}
         height={"100vh"}
         position="absolute"
         left={0}
