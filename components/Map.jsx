@@ -9,8 +9,9 @@ import {
 import GoogleMapReact from "google-map-react"
 import styles from "./Map.module.css"
 import { Box } from "@chakra-ui/react"
+import { IoLocation } from "react-icons/io5"
 
-function Map({ coordinates, setCoordinates, setBounds }) {
+function Map({ coordinates, setCoordinates, setBounds, places }) {
   const [map, setMap] = useState(null)
 
   const { isLoaded } = useLoadScript({
@@ -33,13 +34,19 @@ function Map({ coordinates, setCoordinates, setBounds }) {
         options={""}
         onChange={(e) => {
           console.log(e)
-          setCoordinates({ lat: e.center.lat, lng: e.center.lng});
-          setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw});
-         }}
+          setCoordinates({ lat: e.center.lat, lng: e.center.lng })
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw })
+        }}
         onChildClick={() => {
           console.log("What's good ma G")
         }}
-      ></GoogleMapReact>
+      >
+        {places?.map((place, index) => (
+          <Box lat={Number(place.latitude)} lng={Number(place.longitude)} position={'relative'} cursor="pointer">
+            <IoLocation color="red" fontSize={30}/>
+          </Box>
+        ))}
+      </GoogleMapReact>
     </Box>
   )
 }

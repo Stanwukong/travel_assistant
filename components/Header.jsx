@@ -140,7 +140,7 @@ const Header = ({ setType, setRatings, setCoordinates }) => {
             _hover={{ bg: 'gray.200'}}
             transition={'ease-in-out'}
             transitionDuration={'0.3s'}
-            onClick={() => setType('Restaurants')}
+            onClick={() => setType('restaurants')}
           >
             <BiRestaurant size={25}/>
             <Text ml={3} fontSize={16} fontWeight={500}>
